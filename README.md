@@ -1,5 +1,5 @@
 [![Dependency Status](https://gemnasium.com/Meettya/clinch.jsx.svg)](https://gemnasium.com/Meettya/clinch.jsx)
-[![Build Status](https://travis-ci.org/Meettya/clinch.jsx.svg?branch=react_0.11)](https://travis-ci.org/Meettya/clinch.jsx)
+[![Build Status](https://travis-ci.org/Meettya/clinch.jsx.svg?branch=react_0.12)](https://travis-ci.org/Meettya/clinch.jsx)
 
 # clinch.jsx
 

@@ -51,7 +51,8 @@ describe 'Addon:', ->
           # test result
           vm.runInNewContext code, sandbox = { React, module:exports:null }
           react_comp = sandbox.module.exports
-          reactHtml  = React.renderComponentToStaticMarkup react_comp name : 'Bender'
+          MyComp     = React.createFactory react_comp
+          reactHtml  = React.renderToStaticMarkup MyComp name : 'Bender'
           expect(reactHtml).to.equal results.ok
 
           done()
