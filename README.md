@@ -1,5 +1,5 @@
 [![Dependency Status](https://gemnasium.com/Meettya/clinch.jsx.svg)](https://gemnasium.com/Meettya/clinch.jsx)
-[![Build Status](https://travis-ci.org/Meettya/clinch.jsx.svg?branch=react_0.12)](https://travis-ci.org/Meettya/clinch.jsx)
+[![Build Status](https://travis-ci.org/Meettya/clinch.jsx.svg?branch=react_0.13)](https://travis-ci.org/Meettya/clinch.jsx)
 
 # clinch.jsx
 
@@ -14,6 +14,8 @@ This is external addon for [clinch](https://github.com/Meettya/clinch) - CommonJ
     packer = new Clinch runtime : on
     # add plugin (chainable)
     packer.addPlugin clinch_jsx
+    # or with some options via builder
+    packer.addPlugin clinch_jsx harmony : yes
 
 For more information see main module documentation.
 

@@ -1,6 +1,6 @@
 {
   "name": "clinch.jsx",
-  "version": "0.12.1",
+  "version": "0.13.1",
   "description": "React jsx processor for Clinch",
   "main": "./lib/addon",
   "scripts": {
@@ -18,7 +18,7 @@
   "author": "Dmitrii Karpich <meettya@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "react-tools": "0.12.x"
+    "react-tools": "0.13.x"
   },
   "devDependencies": {
     "coffee-script": "*",
@@ -29,7 +29,7 @@
     "colors": "*",
     "walkdir": "*",
     "fs-extra": "*",
-    "react": "0.12.x"
+    "react": "0.13.x"
   },
   "engines": {
     "node": ">=0.10.0"

@@ -14,4 +14,19 @@ processor = (data, filename, cb) ->
 
   cb null, content, yes
 
-module.exports = { extension, processor }
+builder = (options) ->
+  extension : extension
+  processor : (data, filename, cb) ->
+    try
+      content = React.transform data, options
+    catch error
+      error.filename = filename
+      return cb error
+
+    cb null, content, yes
+
+# dirty hack to use as object
+builder.extension = extension
+builder.processor = processor
+
+module.exports = builder

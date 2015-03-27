@@ -1,10 +1,11 @@
 
-module.exports = React.createClass({
-  render: function() {
-    return (
-      <div className="message">
-        <p ref="p">Hello {this.props.name}!!!</p>
+module.exports = function MyComponent(initialProps){
+  return {
+    state : { name : initialProps.name },
+    render : function() {
+      return <div className="message">
+        <p ref="p">Hello {this.state.name}!!!</p>
       </div>
-    );
-  }
-});
+    }
+  };
+}
