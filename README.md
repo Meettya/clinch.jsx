@@ -1,5 +1,5 @@
 [![Dependency Status](https://gemnasium.com/Meettya/clinch.jsx.svg)](https://gemnasium.com/Meettya/clinch.jsx)
-[![Build Status](https://travis-ci.org/Meettya/clinch.jsx.svg?branch=react_0.13)](https://travis-ci.org/Meettya/clinch.jsx)
+[![Build Status](https://travis-ci.org/Meettya/clinch.jsx.svg?branch=react_0.14_beta)](https://travis-ci.org/Meettya/clinch.jsx)
 
 # clinch.jsx
 
@@ -15,10 +15,12 @@ This is external addon for [clinch](https://github.com/Meettya/clinch) - CommonJ
     # add plugin (chainable)
     packer.addPlugin clinch_jsx
     # or with some options via builder
-    packer.addPlugin clinch_jsx harmony : yes
+    packer.addPlugin clinch_jsx jsxPragma : "whatever"
 
 For more information see main module documentation.
 
 ## About React version
 
 React grow fast and add new features and drop old one in every new releases, so ```clinch.jsx``` have some version for all minor React version.
+
+This is 0.14 version, used for React 0.14 branch, where ```react-tools``` was depricated and ```.jsx``` compiled by [Babel](http://babeljs.io/). For options see [Babel options](http://babeljs.io/docs/usage/options/).
