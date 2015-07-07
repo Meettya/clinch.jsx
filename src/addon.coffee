@@ -1,29 +1,31 @@
 ###
 This is separate React jsx addon for Clinch processor
 ###
-React = require 'react-tools'
+extend  = require 'whet.extend'
+babel   = require 'babel-core'
 
 extension = '.jsx'
 
 processor = (data, filename, cb) ->
   try
-    content = React.transform data
+    result = babel.transform data, { filename, ast : false }
   catch error
     error.filename = filename
     return cb error
 
-  cb null, content, yes
+  cb null, result.code, yes
 
-builder = (options) ->
+builder = (raw_options) ->
   extension : extension
   processor : (data, filename, cb) ->
+    options = extend {}, raw_options, { filename, ast : false }
     try
-      content = React.transform data, options
+      result = babel.transform data, options
     catch error
       error.filename = filename
       return cb error
 
-    cb null, content, yes
+    cb null, result.code, yes
 
 # dirty hack to use as object
 builder.extension = extension
