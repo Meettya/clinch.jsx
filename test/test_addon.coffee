@@ -5,7 +5,9 @@ _     = require 'lodash'
 fs    = require 'fs'
 path  = require 'path'
 vm    = require 'vm'
-React = require 'react/addons'
+
+React          = require 'react'
+ReactDOMServer = require 'react-dom/server'
 
 CoffeeScript = require 'coffee-script'
 
@@ -67,17 +69,17 @@ describe 'Addon:', ->
           vm.runInNewContext code, sandbox = { React, module:exports:null }
           react_comp = sandbox.module.exports
           MyComp     = React.createFactory react_comp
-          reactHtml  = React.renderToStaticMarkup MyComp name : 'Bender'
+          reactHtml  = ReactDOMServer.renderToStaticMarkup MyComp name : 'Bender'
           #console.log reactHtml
           expect(reactHtml).to.equal results.ok
 
           done()
 
-    it 'should compile correct .jsx file as ES6 module (with "harmony" flag)', (done) ->
+    it 'should compile correct .jsx file as ES6 module', (done) ->
       fs.readFile fixturesOk6, READ_OPTIONS, (err, data) ->
         expect(err).to.be.null
         expect(data).to.be.a 'string'
-        { processor } = Compiller harmony : yes
+        { processor } = Compiller
         processor data, fixturesOk6, (err, code) ->
           expect(err).to.be.null
           expect(code).to.be.a 'string'
@@ -85,7 +87,7 @@ describe 'Addon:', ->
           vm.runInNewContext code, sandbox = { React, module:exports:null }
           react_comp = sandbox.module.exports
           MyComp     = React.createFactory react_comp
-          reactHtml  = React.renderToStaticMarkup MyComp name : 'Bender'
+          reactHtml  = ReactDOMServer.renderToStaticMarkup MyComp name : 'Bender'
           # console.log reactHtml
           expect(reactHtml).to.equal results.ok
 
@@ -103,7 +105,7 @@ describe 'Addon:', ->
           vm.runInNewContext code, sandbox = { React, module:exports:null }
           react_comp = sandbox.module.exports
           MyComp     = React.createFactory react_comp
-          reactHtml  = React.renderToStaticMarkup MyComp name : 'Bender'
+          reactHtml  = ReactDOMServer.renderToStaticMarkup MyComp name : 'Bender'
           #console.log reactHtml
           expect(reactHtml).to.equal results.ok
 
