@@ -5,7 +5,9 @@ _     = require 'lodash'
 fs    = require 'fs'
 path  = require 'path'
 vm    = require 'vm'
-React = require 'react/addons'
+
+React          = require 'react'
+ReactDOMServer = require 'react-dom/server'
 
 CoffeeScript = require 'coffee-script'
 
@@ -13,7 +15,6 @@ lib_path = GLOBAL?.lib_path || ''
 
 fixtures      = path.join __dirname, "fixtures"
 fixturesOk    = path.join fixtures,  "component.jsx"
-fixturesOk6   = path.join fixtures,  "component_es6.jsx"
 fixturesOkCS  = path.join fixtures,  "component.coffee"
 fixturesErr   = path.join fixtures,  "with_error.jsx"
 
@@ -67,26 +68,8 @@ describe 'Addon:', ->
           vm.runInNewContext code, sandbox = { React, module:exports:null }
           react_comp = sandbox.module.exports
           MyComp     = React.createFactory react_comp
-          reactHtml  = React.renderToStaticMarkup MyComp name : 'Bender'
+          reactHtml  = ReactDOMServer.renderToStaticMarkup MyComp name : 'Bender'
           #console.log reactHtml
-          expect(reactHtml).to.equal results.ok
-
-          done()
-
-    it 'should compile correct .jsx file as ES6 module (with "harmony" flag)', (done) ->
-      fs.readFile fixturesOk6, READ_OPTIONS, (err, data) ->
-        expect(err).to.be.null
-        expect(data).to.be.a 'string'
-        { processor } = Compiller harmony : yes
-        processor data, fixturesOk6, (err, code) ->
-          expect(err).to.be.null
-          expect(code).to.be.a 'string'
-          # test result
-          vm.runInNewContext code, sandbox = { React, module:exports:null }
-          react_comp = sandbox.module.exports
-          MyComp     = React.createFactory react_comp
-          reactHtml  = React.renderToStaticMarkup MyComp name : 'Bender'
-          # console.log reactHtml
           expect(reactHtml).to.equal results.ok
 
           done()
@@ -103,7 +86,7 @@ describe 'Addon:', ->
           vm.runInNewContext code, sandbox = { React, module:exports:null }
           react_comp = sandbox.module.exports
           MyComp     = React.createFactory react_comp
-          reactHtml  = React.renderToStaticMarkup MyComp name : 'Bender'
+          reactHtml  = ReactDOMServer.renderToStaticMarkup MyComp name : 'Bender'
           #console.log reactHtml
           expect(reactHtml).to.equal results.ok
 
