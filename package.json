@@ -1,6 +1,6 @@
 {
   "name": "clinch.jsx",
-  "version": "0.14.0-beta3",
+  "version": "0.14.1",
   "description": "React jsx processor for Clinch",
   "main": "./lib/addon",
   "scripts": {
@@ -18,7 +18,8 @@
   "author": "Dmitrii Karpich <meettya@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "babel-core": "5.6.x",
+    "babel-core": "6.0.x",
+    "babel-preset-react":"6.0.x",
     "whet.extend":"*"
   },
   "devDependencies": {
@@ -29,8 +30,8 @@
     "fs-extra": "*",
     "lodash": "*",
     "mocha": "*",
-    "react": "^0.14.0-beta1",
-    "react-dom": "^0.14.0-beta1",
+    "react": "^0.14.x",
+    "react-dom": "^0.14.x",
     "walkdir": "*"
   },
   "engines": {

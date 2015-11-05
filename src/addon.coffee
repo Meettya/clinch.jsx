@@ -6,9 +6,14 @@ babel   = require 'babel-core'
 
 extension = '.jsx'
 
+get_options = (filename) ->
+  ast       : false
+  presets   : ['react']
+  filename  : filename
+
 processor = (data, filename, cb) ->
   try
-    result = babel.transform data, { filename, ast : false }
+    result = babel.transform data, get_options filename
   catch error
     error.filename = filename
     return cb error
@@ -18,7 +23,7 @@ processor = (data, filename, cb) ->
 builder = (raw_options) ->
   extension : extension
   processor : (data, filename, cb) ->
-    options = extend {}, raw_options, { filename, ast : false }
+    options = extend {}, raw_options, get_options filename
     try
       result = babel.transform data, options
     catch error
