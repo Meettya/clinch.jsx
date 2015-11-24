@@ -18,8 +18,6 @@ This version **drop ES2015 support**, only ES5-style supported, because of ridic
     packer = new Clinch runtime : on
     # add plugin (chainable)
     packer.addPlugin clinch_jsx
-    # or with some options via builder
-    packer.addPlugin clinch_jsx jsxPragma : "whatever"
 
 For more information see main module documentation.
 
