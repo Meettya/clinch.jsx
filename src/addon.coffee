@@ -1,14 +1,17 @@
 ###
 This is separate React jsx addon for Clinch processor
 ###
-extend  = require 'whet.extend'
-babel   = require 'babel-core'
+extend        = require 'whet.extend'
+babel         = require 'babel-core'
+# HACK - we are require preset and send it as object instead of jast name to avoid path problem
+# https://phabricator.babeljs.io/T6692
+preset_react  = require 'babel-preset-react'
 
 extension = '.jsx'
 
 get_options = (filename) ->
   ast       : false
-  presets   : ['react']
+  presets   : [preset_react]
   filename  : filename
 
 processor = (data, filename, cb) ->
