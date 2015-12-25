@@ -15,6 +15,7 @@ lib_path = GLOBAL?.lib_path || ''
 
 fixtures      = path.join __dirname, "fixtures"
 fixturesOk    = path.join fixtures,  "component.jsx"
+fixturesOk6   = path.join fixtures,  "component_es6.jsx"
 fixturesOkCS  = path.join fixtures,  "component.coffee"
 fixturesErr   = path.join fixtures,  "with_error.jsx"
 
@@ -70,6 +71,24 @@ describe 'Addon:', ->
           MyComp     = React.createFactory react_comp
           reactHtml  = ReactDOMServer.renderToStaticMarkup MyComp name : 'Bender'
           #console.log reactHtml
+          expect(reactHtml).to.equal results.ok
+
+          done()
+
+    it 'should compile correct .jsx file as ES6 module (with "es2015" option)', (done) ->
+      fs.readFile fixturesOk6, READ_OPTIONS, (err, data) ->
+        expect(err).to.be.null
+        expect(data).to.be.a 'string'
+        { processor } = Compiller es2015 : yes
+        processor data, fixturesOk6, (err, code) ->
+          expect(err).to.be.null
+          expect(code).to.be.a 'string'
+          # test result
+          vm.runInNewContext code, sandbox = { React, module:exports:null }
+          react_comp = sandbox.module.exports
+          MyComp     = React.createFactory react_comp
+          reactHtml  = ReactDOMServer.renderToStaticMarkup MyComp name : 'Bender'
+          # console.log reactHtml
           expect(reactHtml).to.equal results.ok
 
           done()
