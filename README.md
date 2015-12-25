@@ -5,9 +5,7 @@
 
 This is external addon for [clinch](https://github.com/Meettya/clinch) - CommonJS to browser packer to support React ```.jsx``` files.
 
-## Breaking changes
-
-This version **drop ES2015 support**, only ES5-style supported, because of ridiculously slow ES2015-style parsing. Ask [Babel](http://babeljs.io/) developers why it happened. And we are use CS and don't use ES2015, so - no more ES2015, sorry.
+This version **have ES2015 support**, with additional option `es2015 : yes`.
 
 ## How to use
 
@@ -18,8 +16,18 @@ This version **drop ES2015 support**, only ES5-style supported, because of ridic
     packer = new Clinch runtime : on
     # add plugin (chainable)
     packer.addPlugin clinch_jsx
+    # or add plugin with es2015 option
+    packer.addPlugin clinch_js6 es2015 : yes
 
 For more information see main module documentation.
+
+## Options
+
+### es2015
+
+Use options `es2015` to set up ES2015 support.
+
+    packer.addPlugin clinch_js6 es2015 : yes
 
 ## About React version
 
