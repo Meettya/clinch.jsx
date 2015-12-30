@@ -8,7 +8,7 @@ babel         = require 'babel-core'
 preset_react  = require 'babel-preset-react'
 preset_es2015 = require 'babel-preset-es2015'
 
-extension = '.jsx'
+extension   = '.jsx'
 
 get_options = (filename, is_es2015_used) ->
   presets = if is_es2015_used
@@ -20,23 +20,19 @@ get_options = (filename, is_es2015_used) ->
   presets   : presets
   filename  : filename
 
-processor = (data, filename, cb) ->
-  try
-    result = babel.transform data, get_options filename
-  catch error
-    error.filename = filename
-    return cb error
-
-  cb null, result.code, yes
-
-builder = (raw_options) ->
+builder     = (raw_options = {}) ->
   # babel unhappy with unknown options, wipe it 
   use_es2015 = no
   if raw_options.es2015?
     use_es2015 = raw_options.es2015
     delete raw_options.es2015
 
-  extension : extension
+  currnet_extention = extension
+  if raw_options.extension?
+    currnet_extention = raw_options.extension
+    delete raw_options.extension
+
+  extension : currnet_extention
   processor : (data, filename, cb) ->
     options = extend {}, raw_options, get_options filename, use_es2015
     try
@@ -46,6 +42,9 @@ builder = (raw_options) ->
       return cb error
 
     cb null, result.code, yes
+
+processor   = (data, filename, cb) ->
+  builder().processor data, filename, cb
 
 # dirty hack to use as object
 builder.extension = extension
