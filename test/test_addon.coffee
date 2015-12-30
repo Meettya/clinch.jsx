@@ -58,6 +58,10 @@ describe 'Addon:', ->
     it 'should export correct file extension ".jsx"', ->
       expect(Compiller.extension).to.equal '.jsx'
 
+    it 'should change file extension with option "extension"', ->
+      extension = 'foo'
+      expect(Compiller({ extension }).extension).to.be.equal extension
+
     it 'should compile correct .jsx file as ES3 module', (done) ->
       fs.readFile fixturesOk, READ_OPTIONS, (err, data) ->
         expect(err).to.be.null
