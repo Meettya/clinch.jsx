@@ -25,9 +25,15 @@ For more information see main module documentation.
 
 ### es2015
 
-Use options `es2015` to set up ES2015 support.
+Use options `es2015` to set up ES2015 support:
 
     packer.addPlugin clinch_js6 es2015 : yes
+
+### extension
+
+Use option `extension` to set up custom file extension:
+
+    packer.addPlugin clinch_js6 extension : '.jsx6' # now files with .jsx6 will be processed wia clinch_js6
 
 ## About React version
 
